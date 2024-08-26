@@ -1,0 +1,20 @@
+version: "3"
+services:
+  appserver:
+    container_name: server
+    hostname: localhost
+    image: vadilat/basic-spring:vad-001
+    ports:
+      - "8080:8080"
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+    - 5432:5432
+    volumes:
+      - ./postgresdata:/var/lib/postgresql/data2
+    privileged: true
+
+  #docker hub pass: th#u_BQnss944RN
+  #WARNING! Your password will be stored unencrypted in /root/.docker/config.json
