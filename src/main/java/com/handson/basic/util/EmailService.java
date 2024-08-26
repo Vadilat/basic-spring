@@ -13,13 +13,13 @@ public class EmailService {
     protected final Log logger = LogFactory.getLog(getClass());
     OkHttpClient client = new OkHttpClient.Builder().build();
 
-    public boolean send(String text,String dest) {
+    public boolean send(String text,String dest, String subject) {
 
         //src will be a predefined address
         //target will be the email of the student from the DB
         //String dest = "vadilat@gmail.com";
         String src = "vadim.cybonet@gmail.com";
-        String subject = "Urgent MSG";
+        //String subject = "Urgent MSG";
 
 //  public boolean send(String text, String phoneNumber) {
         if (dest == null) return false;

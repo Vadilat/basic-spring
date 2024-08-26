@@ -51,14 +51,14 @@ public class StudentsController {
     EmailService emailService;
 
     @RequestMapping(value = "/email/all", method = RequestMethod.POST)
-    public ResponseEntity<?> emailAll(@RequestParam String text)
+    public ResponseEntity<?> emailAll(@RequestParam String text, @RequestParam String subject)
     {
         new Thread(()-> {
             IteratorUtils.toList(studentService.all().iterator())
                     .parallelStream()
                     .map(student -> student.getEmail())
                     .filter(email -> !isEmpty(email))
-                    .forEach(email -> emailService.send(text, email));
+                    .forEach(email -> emailService.send(text, email,subject));
         }).start();
         return new ResponseEntity<>("SENDING EMAIL", HttpStatus.OK);
     }
